@@ -1,18 +1,13 @@
 
 namespace PlayingWithGenerics
 {
-    public class CircularBuffer<T> : IBuffer<T>
+    public class CircularBuffer<T> : Buffer<T>
     {
-
-        private readonly T[] _buffer;
-        private int _start;
-        private int _end;
+        private int _capacity;
 
         public CircularBuffer(int capacity)
         {
-            _start = 0;
-            _end = 0;
-            _buffer = new T[capacity + 1];
+            _capacity = capacity;
         }
 
         public CircularBuffer() : this(capacity: 5)
@@ -20,29 +15,26 @@ namespace PlayingWithGenerics
 
         }
 
-        public void Write(T value)
+        public override void Write(T value)
         {
-            _buffer[_end] = value;
-            _end = (_end + 1) % _buffer.Length;
+            _queue.Enqueue(value);
 
-            if (_end == _start)
+            if(_queue.Count > _capacity)
             {
-                _start = (_start + 1) % _buffer.Length;
+                _queue.Dequeue();
             }
+
         }
 
-        public T Read()
+        public override T Read()
         {
-            var result = _buffer[_start];
-            _start = (_start + 1) % _buffer.Length;
+            var result = _queue.Dequeue();
             return result;
         }
 
-        public int Capacity { get => _buffer.Length; }
+        public int Capacity { get => _capacity; }
 
-        public bool IsEmpty { get => _end == _start; }
-
-        public bool IsFull { get => (_end + 1) % _buffer.Length == _start; }
+        public bool IsFull { get => _queue.Count == _capacity; }
 
     }
 
