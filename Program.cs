@@ -15,11 +15,13 @@ namespace PlayingWithGenerics
             cb.Write(5);
             
             var asInts = cb.AsEnumerableOf<int, double>();
-            cb.Dump();
+            cb.Dump(new BufferExtensions.Printer(ConsoleWriter));
 
-            // System.Console.WriteLine(cb.Read());
-            // System.Console.WriteLine(cb.Read());
-            // System.Console.WriteLine(cb.Read());
+        }
+
+        public static void ConsoleWriter(object item)
+        {
+            Console.WriteLine(item);
         }
     }
 }

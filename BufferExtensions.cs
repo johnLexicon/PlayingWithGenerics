@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -7,6 +8,9 @@ namespace PlayingWithGenerics
 
     public static class BufferExtensions
     {
+
+        public delegate void Printer(object data);
+
         public static IEnumerable<TOutput> AsEnumerableOf<TOutput, T>(this IBuffer<T> buffer)
         {
             var converter = TypeDescriptor.GetConverter(typeof(T));
@@ -18,11 +22,11 @@ namespace PlayingWithGenerics
             }
         }
 
-        public static void Dump<T>(this Buffer<T> buffer)
+        public static void Dump<T>(this Buffer<T> buffer, Printer printer)
         {
             foreach(var item in buffer)
             {
-                System.Console.WriteLine(item);
+                printer(item);
             }
         }
     }
