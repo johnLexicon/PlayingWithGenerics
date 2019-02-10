@@ -17,6 +17,14 @@ namespace PlayingWithGenerics
                 yield return result;
             }
         }
+
+        public static void Dump<T>(this Buffer<T> buffer)
+        {
+            foreach(var item in buffer)
+            {
+                System.Console.WriteLine(item);
+            }
+        }
     }
 
 

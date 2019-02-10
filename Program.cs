@@ -15,10 +15,7 @@ namespace PlayingWithGenerics
             cb.Write(5);
             
             var asInts = cb.AsEnumerableOf<int, double>();
-            foreach(var item in asInts)
-            {
-                System.Console.WriteLine(item);
-            }
+            cb.Dump();
 
             // System.Console.WriteLine(cb.Read());
             // System.Console.WriteLine(cb.Read());
