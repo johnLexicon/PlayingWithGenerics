@@ -15,7 +15,11 @@ namespace PlayingWithGenerics
             cb.Write(5);
             
             var asInts = cb.AsEnumerableOf<int, double>();
-            cb.Dump(new BufferExtensions.Printer<double>(ConsoleWriter));
+
+            //Action is a default delegate type that can take up to 16 parameters and returns void.
+            Action<double> print = ConsoleWriter;
+
+            cb.Dump(print);
 
         }
 
