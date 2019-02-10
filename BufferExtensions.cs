@@ -9,7 +9,7 @@ namespace PlayingWithGenerics
     public static class BufferExtensions
     {
 
-        public delegate void Printer(object data);
+        public delegate void Printer<T>(T data);
 
         public static IEnumerable<TOutput> AsEnumerableOf<TOutput, T>(this IBuffer<T> buffer)
         {
@@ -22,7 +22,7 @@ namespace PlayingWithGenerics
             }
         }
 
-        public static void Dump<T>(this Buffer<T> buffer, Printer printer)
+        public static void Dump<T>(this Buffer<T> buffer, Printer<T> printer)
         {
             foreach(var item in buffer)
             {
