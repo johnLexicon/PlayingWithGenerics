@@ -8,13 +8,17 @@ namespace PlayingWithGenerics
         {
             var cb = new CircularBuffer<double>();
             System.Console.WriteLine(cb.IsEmpty);
-            cb.Write(1);
-            cb.Write(2);
-            cb.Write(3);
+            cb.Write(1.4);
+            cb.Write(2.6);
+            cb.Write(3.2);
             cb.Write(4);
             cb.Write(5);
-            //cb.Write(6);
-            Console.WriteLine(cb.IsFull);
+            
+            var asInts = cb.AsEnumerableOf<int>();
+            foreach(var item in asInts)
+            {
+                System.Console.WriteLine(item);
+            }
 
             // System.Console.WriteLine(cb.Read());
             // System.Console.WriteLine(cb.Read());

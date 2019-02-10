@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace PlayingWithGenerics
 {
@@ -31,6 +32,17 @@ namespace PlayingWithGenerics
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        public IEnumerable<TOutput> AsEnumerableOf<TOutput>()
+        {
+            var converter = TypeDescriptor.GetConverter(typeof(T));
+            
+            foreach(var item in _queue)
+            {
+                TOutput result = (TOutput)converter.ConvertTo(item, typeof(TOutput));
+                yield return result;
+            }
         }
     }
 

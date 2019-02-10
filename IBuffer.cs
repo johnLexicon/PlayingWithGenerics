@@ -10,6 +10,8 @@ namespace PlayingWithGenerics
         void Write(T value);
 
         T Read();
+
+        IEnumerable<TOutput> AsEnumerableOf<TOutput>();
     }
 
 }
