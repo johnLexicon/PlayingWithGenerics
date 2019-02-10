@@ -34,16 +34,7 @@ namespace PlayingWithGenerics
             return GetEnumerator();
         }
 
-        public IEnumerable<TOutput> AsEnumerableOf<TOutput>()
-        {
-            var converter = TypeDescriptor.GetConverter(typeof(T));
-            
-            foreach(var item in _queue)
-            {
-                TOutput result = (TOutput)converter.ConvertTo(item, typeof(TOutput));
-                yield return result;
-            }
-        }
+
     }
 
 }

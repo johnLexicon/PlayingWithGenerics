@@ -11,7 +11,6 @@ namespace PlayingWithGenerics
 
         T Read();
 
-        IEnumerable<TOutput> AsEnumerableOf<TOutput>();
     }
 
 }

@@ -6,7 +6,7 @@ namespace PlayingWithGenerics
     {
         static void Main(string[] args)
         {
-            var cb = new CircularBuffer<double>();
+            Buffer<double> cb = new CircularBuffer<double>();
             System.Console.WriteLine(cb.IsEmpty);
             cb.Write(1.4);
             cb.Write(2.6);
@@ -14,7 +14,7 @@ namespace PlayingWithGenerics
             cb.Write(4);
             cb.Write(5);
             
-            var asInts = cb.AsEnumerableOf<int>();
+            var asInts = cb.AsEnumerableOf<int, double>();
             foreach(var item in asInts)
             {
                 System.Console.WriteLine(item);
