@@ -17,15 +17,12 @@ namespace PlayingWithGenerics
             var asInts = cb.AsEnumerableOf<int, double>();
 
             //Action is a default delegate type that can take up to 16 parameters and returns void.
-            Action<double> print = ConsoleWriter;
+            Action<double> print = delegate (double data){
+                System.Console.WriteLine(data);
+            };
 
             cb.Dump(print);
 
-        }
-
-        public static void ConsoleWriter(double item)
-        {
-            Console.WriteLine(item);
         }
     }
 }
