@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace PlayingWithGenerics
 {
@@ -14,11 +15,12 @@ namespace PlayingWithGenerics
             cb.Write(4);
             cb.Write(5);
             
-            var asInts = cb.AsEnumerableOf<int, double>();
+            Converter<double, DateTime> convert = v => new DateTime().AddDays(v); 
+            var asDates = cb.Map<DateTime, double>(convert);
+            asDates.ToList().ForEach(v => System.Console.WriteLine(v));
 
             //Action is a default delegate type that can take up to 16 parameters and returns void.
             Action<double> print = d => System.Console.WriteLine(d);
-
             cb.Dump(print);
 
         }
